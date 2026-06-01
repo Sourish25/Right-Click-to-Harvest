@@ -3,7 +3,7 @@
   "id": "right_click_harvest",
   "version": "${version}",
   "name": "Right Click to Harvest",
-  "description": "Simply right click fully grown crops to harvest and automatically replant!",
+  "description": "Simply right-click fully grown crops (including Sniffer and vertical crops) to instantly harvest and auto-replant them!",
   "authors": [
     "Antigravity"
   ],
