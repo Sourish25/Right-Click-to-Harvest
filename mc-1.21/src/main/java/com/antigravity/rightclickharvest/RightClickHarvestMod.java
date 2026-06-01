@@ -17,16 +17,36 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class RightClickHarvestMod implements ModInitializer {
+    private static final ActionResult PASS_RESULT = getActionResult("PASS", "field_5811");
+    private static final ActionResult SUCCESS_RESULT = getActionResult("SUCCESS", "field_5812");
+
+    private static ActionResult getActionResult(String name, String intermediaryName) {
+        try {
+            for (java.lang.reflect.Field field : ActionResult.class.getFields()) {
+                if (field.getName().equals(name) || field.getName().equals(intermediaryName)) {
+                    return (ActionResult) field.get(null);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            return ActionResult.valueOf(name);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @Override
     public void onInitialize() {
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             if (world.isClient() || player.isSpectator()) {
-                return ActionResult.PASS;
+                return PASS_RESULT;
             }
 
             // Only process the main hand to avoid duplicate trigger
             if (hand != Hand.MAIN_HAND) {
-                return ActionResult.PASS;
+                return PASS_RESULT;
             }
 
             BlockPos pos = hitResult.getBlockPos();
@@ -36,13 +56,13 @@ public class RightClickHarvestMod implements ModInitializer {
             // Check Melons and Pumpkins first
             if (block == Blocks.MELON || block == Blocks.PUMPKIN) {
                 world.breakBlock(pos, true, player);
-                return ActionResult.SUCCESS;
+                return SUCCESS_RESULT;
             }
 
             // Check Sugar Cane and Cactus (Vertical Crops)
             if (block == Blocks.SUGAR_CANE || block == Blocks.CACTUS) {
                 if (harvestVerticalCrop(world, pos, block, player)) {
-                    return ActionResult.SUCCESS;
+                    return SUCCESS_RESULT;
                 }
             }
 
@@ -52,22 +72,22 @@ public class RightClickHarvestMod implements ModInitializer {
                     IntProperty ageProperty = getAgeProperty(state);
                     if (ageProperty != null) {
                         harvestCrop(world, pos, state, cropBlock, ageProperty, getSeedItem(block), player, hand);
-                        return ActionResult.SUCCESS;
+                        return SUCCESS_RESULT;
                     }
                 }
             } else if (block instanceof CocoaBlock cocoaBlock) {
                 if (state.get(CocoaBlock.AGE) >= 2) {
                     harvestCrop(world, pos, state, cocoaBlock, CocoaBlock.AGE, Items.COCOA_BEANS, player, hand);
-                    return ActionResult.SUCCESS;
+                    return SUCCESS_RESULT;
                 }
             } else if (block instanceof NetherWartBlock netherWartBlock) {
                 if (state.get(NetherWartBlock.AGE) >= 3) {
                     harvestCrop(world, pos, state, netherWartBlock, NetherWartBlock.AGE, Items.NETHER_WART, player, hand);
-                    return ActionResult.SUCCESS;
+                    return SUCCESS_RESULT;
                 }
             }
 
-            return ActionResult.PASS;
+            return PASS_RESULT;
         });
     }
 

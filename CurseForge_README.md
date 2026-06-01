@@ -7,9 +7,13 @@ Stop breaking your crops by accident! **Right Click to Harvest** is a premium, l
 
 ---
 
+> [!IMPORTANT]
+> **Fabric API is Required!**
+> This mod requires the **[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)** to be installed. Without it, your game or server will not initialize. Please ensure it is placed in your `mods/` folder alongside this mod.
+
 > [!NOTE]
 > **Server-Side Only & Single Player Support**
-> You only need to install this on the **server**! Players connecting with a 100% vanilla Minecraft client can use all features immediately and flawlessly. It also works perfectly out-of-the-box in **Single Player**!
+> You only need to install this on the **server**! Players connecting with a 100% vanilla Minecraft client can use all features immediately and flawlessly. It also works perfectly out-of-the-box in **Single Player** (where both this mod and Fabric API must be in your local `mods/` folder).
 
 ---
 
