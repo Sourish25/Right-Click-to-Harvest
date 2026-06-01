@@ -1,0 +1,27 @@
+# Gradle directories
+.gradle/
+build/
+**/build/
+**/.gradle/
+
+# Development run directories (Minecraft saves, logs, configs)
+run/
+**/run/
+
+# IDE directories and files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+bin/
+out/
+**/bin/
+**/out/
+
+# Log files
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db

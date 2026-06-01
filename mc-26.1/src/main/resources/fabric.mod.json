@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "right_click_harvest",
+  "version": "${version}",
+  "name": "Right Click to Harvest",
+  "description": "Simply right click fully grown crops to harvest and automatically replant!",
+  "authors": [
+    "Antigravity"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.antigravity.rightclickharvest.RightClickHarvestMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=26.1.0-alpha.0.0 <=26.1.99"
+  }
+}
