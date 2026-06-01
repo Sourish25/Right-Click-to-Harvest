@@ -8,6 +8,9 @@ build/
 run/
 **/run/
 
+# CurseForge local release folder
+CurseForge Releases/
+
 # IDE directories and files
 .idea/
 *.iml
